@@ -13,13 +13,15 @@ export const PageLayout = (props) => {
   return (
     <>
       <Container fluid>
-        <Row>
-        <Col>Add nav elements here</Col>
-          <Col xs={8}>
+        <Row className="align-items-center">
+          <Col>Add nav elements here</Col>
+          <Col>
             <center>4tt</center>
-          </Col >
-          
-          <Col >{isAuthenticated ? <SignOutButton /> : <SignInButton />}</Col>
+          </Col>
+
+          <Col className="text-end">
+            {isAuthenticated ? <SignOutButton /> : <SignInButton />}
+          </Col>
         </Row>
       </Container>
       {props.children}

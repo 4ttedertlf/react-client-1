@@ -15,7 +15,7 @@ import { msalConfig, loginRequest } from "./lib/authConfig";
 import { ProfileData } from "./components/data-profile";
 import { callMsGraph } from "./lib/microsoft-graph";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Welcome from "./Welcome";
 import {
   reactPlugin,
   appInsights,
@@ -56,7 +56,7 @@ function ProfileContent() {
 
   return (
       <>
-          <h5 className="card-title">Welcome {name}</h5>
+          {name ? name : null}
           {graphData ? 
               <ProfileData graphData={graphData} />
               :
@@ -70,13 +70,12 @@ const InnerApp = () => {
     <div>
       <PageLayout>
         <AuthenticatedTemplate>
-          You are signed in. 
           <ProfileContent />
           <Upload appConfig={global.appConfig} />
           <Blob />
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
-          <p>You are not signed in! Please sign in.</p>
+          <Welcome />
         </UnauthenticatedTemplate>
       </PageLayout>
     </div>
