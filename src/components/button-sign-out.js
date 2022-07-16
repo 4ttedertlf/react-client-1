@@ -14,12 +14,19 @@ function handleLogout(instance) {
 export const SignOutButton = () => {
   const { accounts } = useMsal();
   const name = accounts[0] && accounts[0].name;
+  const userName = accounts[0] && accounts[0].username;
+
+  console.log(accounts[0]);
+
   const { instance } = useMsal();
 
   return (
     <div className="d-flex align-items-center float-end gap-3">
-      <div>{name ? name : null}</div>
-      <div >
+      <div>
+        <div>{name ? name : null}</div>
+        <div> {userName ? userName : null}</div>
+      </div>
+      <div>
         <Button
           type="button"
           className="btn btn-primary"

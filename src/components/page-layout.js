@@ -5,11 +5,9 @@ import { Header } from "./header";
  * Renders the navbar component with a sign-in button if a user is not authenticated
  */
 export const PageLayout = (props) => {
-
-
   return (
     <>
-      <Header></Header>
+      <Header />
       {props.children}
       <Footer />
     </>

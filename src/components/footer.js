@@ -8,7 +8,7 @@ export const Footer = (props) => {
 
   return (
     <>
-      <Container className="container-fluid bg-secondary text-white" fluid>
+      <Container className="container-fluid bg-secondary text-white pt-3 pb-3" fluid>
         <Row className="text-center center-block">
           <Col><PublicStaticContent  contentName="Cookies" htmlContent="Cookies"/></Col>
           <Col><PublicStaticContent contentName="Privacy" htmlContent="Privacy policy"/></Col>

@@ -16,7 +16,7 @@ export const SignInButton = () => {
   const { instance } = useMsal();
 
   return (
-    <div className="text-end">
+    <div >
       <Button
         type="button"
         className="btn btn-primary"
