@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Container} from "react-bootstrap";
 const Upload = ({ appConfig }) => {
   const baseUrl = appConfig.REACT_APP_SERVER_BASE_URL;
 
@@ -134,10 +134,10 @@ const Upload = ({ appConfig }) => {
   };
 
   return (
-    <div>
+    <Container className="gap-3">
       <h1>Upload file to Azure Blob Storage</h1>
       {UploadForm()}
-    </div>
+    </Container>
   );
 };
 

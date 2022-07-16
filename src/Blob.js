@@ -1,7 +1,12 @@
+import { Container} from "react-bootstrap";
+
 const Blob = ({blob}) => {
   return (
-    <div>Blob: {blob}
+    <Container className="gap-3">
+          <div>Blob: {blob}
     </div>
+    </Container>
+
   );
 };
 

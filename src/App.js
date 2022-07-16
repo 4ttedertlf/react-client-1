@@ -1,19 +1,18 @@
 import { render } from "react-dom";
-import Blob from "./Blob";
-import Upload from "./Upload";
-import React, { StrictMode, useState } from "react";
+import { BlobStorage } from "./BlobStorage";
+import React, { StrictMode} from "react";
 import { getAppConfig } from "./lib/appConfiguration";
 import { PublicClientApplication } from "@azure/msal-browser";
 import {
   MsalProvider,
   AuthenticatedTemplate,
-  UnauthenticatedTemplate,
-  useMsal,
+  UnauthenticatedTemplate
 } from "@azure/msal-react";
-import { PageLayout } from "./components/nav-bar";
-import { msalConfig, loginRequest } from "./lib/authConfig";
-import { ProfileData } from "./components/data-profile";
-import { callMsGraph } from "./lib/microsoft-graph";
+import { PageLayout } from "./components/page-layout";
+
+import { msalConfig } from "./lib/authConfig";
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Welcome from "./Welcome";
 import {
@@ -32,47 +31,12 @@ console.log(global.appConfig);
 
 initializeMonitor(global.appConfig.REACT_APP_MICROSOFT_APPLICATION_INSIGHTS);
 
-function ProfileContent() {
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
-
-  const name = accounts[0] && accounts[0].name;
-
-  function RequestProfileData() {
-      const request = {
-          ...loginRequest,
-          account: accounts[0]
-      };
-
-      // Silently acquires an access token which is then attached to a request for Microsoft Graph data
-      instance.acquireTokenSilent(request).then((response) => {
-          callMsGraph(response.accessToken).then(response => setGraphData(response));
-      }).catch((e) => {
-          instance.acquireTokenPopup(request).then((response) => {
-              callMsGraph(response.accessToken).then(response => setGraphData(response));
-          });
-      });
-  }
-
-  return (
-      <>
-          {name ? name : null}
-          {graphData ? 
-              <ProfileData graphData={graphData} />
-              :
-              <div onClick={RequestProfileData}>Get Profile Information</div>
-          }
-      </>
-  );
-};
 const InnerApp = () => {
   return (
     <div>
       <PageLayout>
         <AuthenticatedTemplate>
-          <ProfileContent />
-          <Upload appConfig={global.appConfig} />
-          <Blob />
+          <BlobStorage appConfig={global.appConfig}/>
         </AuthenticatedTemplate>
         <UnauthenticatedTemplate>
           <Welcome />

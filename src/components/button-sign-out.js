@@ -22,7 +22,7 @@ export const SignOutButton = () => {
       <div >
         <Button
           type="button"
-          class="btn btn-primary"
+          className="btn btn-primary"
           onClick={() => handleLogout(instance)}
         >
           Sign out
